@@ -5,6 +5,7 @@ services:
             - 8080
         environment:
             - ADMINER_PLUGINS=sql-log dump-json
+            - ADMINER_DESIGN=pappu687
         image: adminer
 
     db:
