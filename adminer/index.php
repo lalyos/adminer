@@ -5,6 +5,9 @@ namespace docker {
 
 		class Adminer extends \AdminerPlugin {
 
+            function name() {
+                //return '===Software===';
+            }
             function homepage() {
                 echo '<p class="links">' . ($_GET["ns"] == "" && support("database") ? '<a href="' . h(ME) . 'database=">' . lang('Alter database') . "</a>\n" : "");
                 echo (support("scheme") ? "<a href='" . h(ME) . "scheme='>" . ($_GET["ns"] != "" ? lang('Alter schema') : lang('Create schema')) . "</a>\n" : "");
