@@ -6,6 +6,7 @@ services:
         volumes:
             - ./adminer/entrypoint.sh:/usr/local/bin/entrypoint.sh
             - ./adminer/plugins-enabled/oneclick-login.php:/var/www/html/plugins-enabled/oneclick-login.php
+            #- ./adminer/plugins-enabled/fill-login-form.php:/var/www/html/plugins-enabled/fill-login-form.php
         environment:
             - ADMINER_PLUGINS=sql-log dump-json
             #- ADMINER_DESIGN=pappu687
