@@ -4,6 +4,19 @@ namespace docker {
 		require_once('plugins/plugin.php');
 
 		class Adminer extends \AdminerPlugin {
+
+            function homepage() {
+                echo '<p class="links">' . ($_GET["ns"] == "" && support("database") ? '<a href="' . h(ME) . 'database=">' . lang('Alter database') . "</a>\n" : "");
+                echo (support("scheme") ? "<a href='" . h(ME) . "scheme='>" . ($_GET["ns"] != "" ? lang('Alter schema') : lang('Create schema')) . "</a>\n" : "");
+                echo ($_GET["ns"] !== "" ? '<a href="' . h(ME) . 'schema=">' . lang('Database schema') . "</a>\n" : "");
+                echo (support("privileges") ? "<a href='" . h(ME) . "privileges='>" . lang('Privileges') . "</a>\n" : "");
+
+                echo "<a href='/demo.sql'>  DEMO.sql </a>\n";
+
+                return true;
+            }
+
+
 			function _callParent($function, $args) {
 				if ($function === 'loginForm') {
 					ob_start();

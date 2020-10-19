@@ -5,6 +5,7 @@ services:
             - 8080
         volumes:
             - ./adminer/entrypoint.sh:/usr/local/bin/entrypoint.sh
+            - ./adminer/index.php:/var/www/html/index.php
             - ./adminer/plugins-enabled/oneclick-login.php:/var/www/html/plugins-enabled/oneclick-login.php
             #- ./adminer/plugins-enabled/fill-login-form.php:/var/www/html/plugins-enabled/fill-login-form.php
         environment:
