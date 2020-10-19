@@ -93,14 +93,14 @@ class OneClickLogin {
 
 return new OneClickLogin(
 	[
-		'db' => array(
+		$_ENV['ADMINER_LOGIN_HOST'] ?: 'db' => array(
 			// Required parameters
-			'username'  => 'root',
-			'pass'      => 'secret',
+			'username'  => $_ENV['ADMINER_LOGIN_USER'] ?: 'root',
+			'pass'      => $_ENV['ADMINER_LOGIN_PASSWORD'] ?: 'secret',
 			// Optional parameters
 			//'label'     => 'MySQL-demo',
 			'databases' => array(
-				'demo' => 'DB: demo'/*,
+				$_ENV['ADMINER_LOGIN_DATABASE'] ?: 'demo' => $_ENV['ADMINER_LOGIN_DATABASE'] ?: 'demo'/*,
 				'mysql' => 'DB: mysql'*/
 			)
 		),

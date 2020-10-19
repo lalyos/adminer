@@ -19,3 +19,14 @@ The following additional functionality is added:
 ```
 docker-compose up -d
 ```
+
+## Quick login config
+
+The oneclick-login is enhamced so it can take the 4 login form values from en vars.
+Here are the defaults:
+```
+ADMINER_LOGIN_HOST=dbx
+ADMINER_LOGIN_USER=rootx
+ADMINER_LOGIN_PASSWORD=secretx
+ADMINER_LOGIN_DATABASE=demox
+```
