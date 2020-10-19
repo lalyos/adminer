@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  * Display a list of predefined database servers to login with just one click.
  * Don't use this in production enviroment unless the access is restricted
  *
@@ -10,8 +10,8 @@
 class OneClickLogin {
 	/** @access protected */
 	var $servers, $driver;
-	
-	/** 
+
+	/**
 	 *
 	 * Set supported servers
 	 * @param array $servers
@@ -27,7 +27,7 @@ class OneClickLogin {
 		// check if server is allowed
 		return isset($this->servers[SERVER]);
 	}
-	
+
 	function databaseValues($server){
 		$databases = $server['databases'];
 		if(is_array($databases))
@@ -40,7 +40,7 @@ class OneClickLogin {
 			}
 		return $databases;
 	}
-	
+
 	function loginForm() {
 		?>
 		</form>
@@ -50,15 +50,15 @@ class OneClickLogin {
 				<th><?php echo lang('User') ?></th>
 				<th><?php echo lang('Database') ?></th>
 			</tr>
-			
+
 			<?php
 			foreach($this->servers as $host => $server):
-			
-			
+
+
 				$databases = isset($server['databases']) ? $server['databases'] : "";
 				if (!is_array($databases))
 					$databases = array($databases => $databases);
-				
+
 				foreach(array_keys($databases) as $i => $database):
 					?>
 					<tr>
@@ -66,7 +66,7 @@ class OneClickLogin {
 							<td style="vertical-align:middle" rowspan="<?php echo count($databases) ?>"><?php echo isset($server['label']) ? "{$server['label']} ($host)" : $host; ?></td>
 							<td style="vertical-align:middle" rowspan="<?php echo count($databases) ?>"><?php echo $server['username'] ?></td>
 						<?php endif; ?>
-						<td style="vertical-align:middle"><?php echo $databases[$database] ?></td>	
+						<td style="vertical-align:middle"><?php echo $databases[$database] ?></td>
 						<td>
 							<form action="" method="post">
 								<input type="hidden" name="auth[driver]" value="<?php echo $this->driver; ?>">
@@ -81,12 +81,28 @@ class OneClickLogin {
 					</tr>
 					<?php
 				endforeach;
-			endforeach;	
+			endforeach;
 			?>
-		</table>	
-		<form action="" method="post">		
+		</table>
+		<form action="" method="post">
 		<?php
 		return true;
 	}
-	
+
 }
+
+return new OneClickLogin(
+	[
+		'db' => array(
+			// Required parameters
+			'username'  => 'root',
+			'pass'      => 'secret',
+			// Optional parameters
+			//'label'     => 'MySQL-demo',
+			'databases' => array(
+				'demo' => 'DB: demo'/*,
+				'mysql' => 'DB: mysql'*/
+			)
+		),
+	]
+);
