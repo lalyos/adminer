@@ -3,9 +3,12 @@ services:
     adminer:
         ports:
             - 8080
+        volumes:
+            - ./adminer/entrypoint.sh:/usr/local/bin/entrypoint.sh
         environment:
             - ADMINER_PLUGINS=sql-log dump-json
-            - ADMINER_DESIGN=pappu687
+            #- ADMINER_DESIGN=pappu687
+            - ADMINER_DESIGN=https://raw.githubusercontent.com/pepa-linha/Adminer-Design-Dark/master/adminer.css
         image: adminer
 
     db:
